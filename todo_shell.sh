@@ -32,9 +32,10 @@ function print_prompt (){
 # -----------------------------------------------------------------------------
 print_prompt
 while read line; do
-    if [ $line == "quit" ]; then
+    cmd=${line%% *}
+    if [ $cmd == "quit" ]; then
         exit 0
-    elif [ $line == "clear" ]; then
+    elif [ $cmd == "clear" ]; then
         $CLEAR
         print_prompt
         continue
