@@ -17,19 +17,27 @@
 
 # default parameters
 # -----------------------------------------------------------------------------
+TODO_SHELL_CFG="$HOME/.todo_shell.cfg"
 TODO_ROOT="$HOME/bin"
-TODO="$TODO_ROOT/todo.sh -d $HOME/.todo.cfg"
-CLEAR="clear"
-prompt="todo> "
+TODO_CFG="$HOME/.todo.cfg"
+PROMPT="todo> "
 
-opts=$@
+# Read config
+[[ -f $TODO_SHELL_CFG ]] && source $TODO_SHELL_CFG
+
+# Globals
+# -----------------------------------------------------------------------------
+TODO="$TODO_ROOT/todo.sh -d $TODO_CFG"
+CLEAR="clear"
 
 # prints prompt
 function print_prompt (){
-    printf "$prompt"
+    printf "$PROMPT"
 }
-# main loop
+
+# main
 # -----------------------------------------------------------------------------
+opts=$@
 print_prompt
 while read line; do
     cmd=${line%% *}
