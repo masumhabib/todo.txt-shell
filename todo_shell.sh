@@ -54,6 +54,12 @@ opts=$@
 # main loop
 print_prompt
 while read line; do
+    len=${#line}
+    if [ $len -le 0 ]; then
+        print_prompt
+        continue
+    fi
+
     cmd=${line%% *}
     if [ $cmd == "quit" ]; then
         exit 0
