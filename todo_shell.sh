@@ -31,7 +31,7 @@ function print_prompt (){
 # main loop
 # -----------------------------------------------------------------------------
 print_prompt
-while read line; do
+while read -e line; do
     cmd=${line%% *}
     if [ $cmd == "quit" ]; then
         exit 0
